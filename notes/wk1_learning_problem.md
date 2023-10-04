@@ -2,7 +2,7 @@
 id: ay8fbhw9ee5petr4vpmgorl
 title: Wk1_learning_problem
 desc: ''
-updated: 1695938648012
+updated: 1695946208485
 created: 1695756836577
 ---
 # Learning Problem (L1)
@@ -115,6 +115,7 @@ To Note:
 - the inequality is valid for all $N > 0$ and $\epsilon > 0$
 - bound does not depend on $\mu$
 - actually, instead of us approximating $\nu$ to $\mu$,  what we end up doing is approximating $\mu$ to $\nu$ when learning.
+- the cause is $\mu$ and the effect is $\nu$, but we are using the effect to infer the cause 
 
 ## How does this relate to learning?
 - *Bin*: the unknown number is $\mu$
@@ -160,3 +161,7 @@ $$
 - i.e., the probability of the picked $g$ approximating $\mu$ with $\nu$ and going beyond the upper bound set is always going to be less than the sum of the union probability bound of every $h \in H$. ($g$ is just one of the $h$'s and there are $M$ $h$'s and the R.H.S of the inequality is the same for all)
 - this is sorta dumb but it is correct 
 - how we actually solve the issues of possibly having infinite $h$'s is tackled in later notes, because as you can imagine at the moment, as $M$ tends to infinity, the probability of our approximation going above the set upper bound gets bounded by infinity -> which is not a very useful thing to infer at all.
+
+## Discussion Notes
+- this lecture's content is meant to be general, i.e. these concepts hold for any probability dist., hypothesis set and target function
+-
