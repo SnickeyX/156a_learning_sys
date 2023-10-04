@@ -2,7 +2,7 @@
 id: t26xdbrjqn3yfvbim92ql89
 title: Wk2_models_noise
 desc: ''
-updated: 1696366849722
+updated: 1696451039424
 created: 1696363051238
 ---
 
@@ -17,9 +17,9 @@ _Squared Error_ = $( h(x) - f(x) )^2$
 - in-sample error: $E_{\text{in}}(h) = \frac{1}{N}\sum_{n=1}^{N}(h(x_n)-y_n)^2$
 - idea is to essentially minimize the squared error 
 
-![Alt text](image-6.png)
+![Alt text](assets/image-6.png)
 - above, we replaced $h$ with $w$ instead since that is the only thing that we are actually changing 
-![Alt text](image-5.png)
+![Alt text](assets/image-5.png)
 - yes, its literally a single step
 - also, if $X$ is not invertible - there are apparently ways around it to still do the above
 
@@ -34,7 +34,7 @@ _Squared Error_ = $( h(x) - f(x) )^2$
 
 *Note* - the important thing to notice in all of this is that instead of being linear w.r.t $x_i \in X$, we actually assume those are just some constants (since they are coming from training data). We actually are linear in $w since that is what we are actually changing. (Recall that we are using "the effect to infer the cause")
 
-![Alt text](image-7.png)
+![Alt text](assets/image-7.png)
 - we would like to be able to do the RHS but we know that the data is linearly inseparable in that case
-![Alt text](image-8.png)
+![Alt text](assets/image-8.png)
 - if we just apply some function $\phi$ to every point which just plots the square distance from origin of each point -> we create the RHS which is definitely linearly separable.

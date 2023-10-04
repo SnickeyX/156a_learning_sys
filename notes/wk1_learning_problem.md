@@ -2,7 +2,7 @@
 id: ay8fbhw9ee5petr4vpmgorl
 title: Wk1_learning_problem
 desc: ''
-updated: 1695946208485
+updated: 1696451043105
 created: 1695756836577
 ---
 # Learning Problem (L1)
@@ -60,7 +60,7 @@ A _misclassified_ point is one where sign$(w^Tx_n) \neq y_n$
 So, we update the weight vector with the rule $w \leftarrow w + y_nx_n$ 
 
 Why?
-![Alt text](image.png)
+![Alt text](assets/image.png)
 
 ## Simple PLA Algorithm
 At iteration $t= 1,2,3..$ pick a misclassified from the data and run PLA on it! 
@@ -100,7 +100,7 @@ $Pr( \text{picking a green marble} ) = 1 - \mu$
 - no -> since the sample could be mostly green while the bin is mostly red
 - but also yes, if $N$ is large then the sample frequency $\nu$ is likely to be close to bin frequency $\mu$
 
-![Alt text](image-1.png)
+![Alt text](assets/image-1.png)
 
 ## Hoeffding's Inequality
 - we can approximate $\nu$ to be $\mu$ if $N$ is large, but how do we ensure this probabilistically? 
@@ -128,7 +128,7 @@ To Note:
 ## Probability Dist. P on X
 - to further model this experiment properly, it is important to attach a probability dist on X since there is a certain "chance" associated with drawing a red or green marble  
 - also note, we do not actually care what this distribution is exactly, we just must be aware that there is one
-![Alt text](image-2.png)
+![Alt text](assets/image-2.png)
 
 ## Verification vs Learning
 - if we are able to have some $h$ that does get the same results as some $f$, and then say that **its** ($h$'s) $\nu$ generalizes to $\mu$ and stop -> we have not actually learnt 
@@ -138,7 +138,7 @@ To Note:
 ## Multiple Bins
 - how we actually learn involves us generalizing the bin model to more than one hypothesis (i.e. testing multiple $h$'s with their own individual bin)
 - then picking whichever one "performs the best" (i.e. in terms of the Hoeffding Inequality)
-![](image-3.png)
+![](assets/image-3.png)
 
 ## Notation for learning
 - to make the dependency of $\mu$ and $\nu$ on a particular $h$ more explicit, consider the following:
@@ -147,7 +147,7 @@ To Note:
 (out-of-sample is what people actually care about)
 
 The Hoeffding inequality now becomes $\mathbb{P}[\lvert E_{\text{in}}(h) - E_{\text{out}}(h) \rvert > \epsilon] \leq 2*e^{-2\epsilon^2*N}$
-![Alt text](image-4.png)
+![Alt text](assets/image-4.png)
 
 ## Hoeffding Inequality over multiple bin!
 - the Hoeffding inequality doesn't actually apply to multiple bins
