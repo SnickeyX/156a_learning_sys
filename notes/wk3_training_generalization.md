@@ -2,7 +2,7 @@
 id: 5x7topfgrz8e3hbdwffwyi8
 title: Wk3_training_generalization
 desc: ''
-updated: 1696983059223
+updated: 1697156840326
 created: 1696972972982
 ---
 
@@ -83,3 +83,48 @@ Here are the properties:
 - if there is no break point -> $m_H(k) = 2^k$   
 - if there is a break point  -> $m_H(k)$ is **polynomial** in N (proof later on)
 
+## Theory of Generalization 
+If there is a break point:
+1. Proof that $m_H(N)$ is polynomial 
+2. Proof that $m_H(N)$ can replace M
+
+## Bounding $m_H(N)$
+We want to show that $m_H(N) \leq$ a polynomial 
+Define:  
+$B(N,k)$: Maximum num. of dichotomies on $N$ points, with break point $k$ 
+
+Note: $B(N,k)$ is not affected by the input space, the target function or the hypothesis set!
+## Results
+![Alt text](assets/image-14.png)
+- Idea: construct this particular table for some $B(N,k)$. Call the last point $x_N$ an extension. 
+- The first set of rows in $S_1$ refer to the dichotomies where the last point $x_N$ is either +1 or -1 for some set of points $x_1...x_{N-1}$. That is to say, given some $x_1...x_{N-1}$ points, the point following those must be classified ONLY as EITHER +1 OR -1 but NOT BOTH. 
+- The second set $S_2$ is similar, except for any given $x_1...x_{N-1}$ points, we have that the last point can be either +1 (in which case we put this set of points in $S_2^+$) or -1 ($S_2^-$) 
+- Together these two sets describe all dichotomies of some N points with a break point $k$ 
+- Note that this is a construction that we are describing for the results mentioned above - we are doing this to describe some recursion for us to actually compute the value of $B(N,k)$ by breaking the problem down.
+- Also note that in $S_1$, we enforce that no $x_1...x_{N-1}$ is repeated 
+- $x_1...x_{N-1}$ is $S_2^+$ and $S_2^-$ are the SAME (only thing that differentiates the two by definition is their extension)  
+
+Notes:
+- How do we know if there are any $x_1 ... x_{n-1}$ with two different extensions (i.e. stuff in $S_2$) -> we don't! but if there were, they would be in $S_2$ (this is completely generalised and that is the point!)
+- How do we know that $x_1...x_{n-1}$ are not repeated? -> that is exactly how they are being constructed 
+- How do we know that stuff from $S_1$ is not in $S_2^+$ -> if it appears in $S_2^+$ then it must have two extensions so it cant be in $S_1$ which only has one type of extension 
+- why is $\alpha + \beta \leq$ and not $=$? because it is very possible that we have not exhaustively listed everything in $\alpha$ and $\beta$ for $N-1$
+- why is it $k-1$? -> since with every set of points in the set $S_2^+$ - the extension is just +1 and there is nothing else it can be. So, just for that set, we can decrement the break-point since it makes no difference. (also we need to do this coz recursion)
+
+Theorem:  
+$$
+B(N,k) \leq \sum_{i=0}^{k-1}{N \choose i}
+$$
+(proof uses the recursion described earlier with induction)
+
+Theorem:  
+$$
+\mathbb{P}[\lvert E_{\text{in}}(g) - E_{\text{out}}(g) \rvert > \epsilon] \leq 4*m_H(2 \cdot N)*e^{-\frac{1}{8}\epsilon^2*N}
+$$
+- this is the **The Vapnik-Chervonenkis Inequality** which actually makes learning all possible. VC dim will follow shortly (the abbreviation will now make more sense)
+- proof of this is 6 pages and I am choosing to omit that entirely, but it can be found online!
+
+## Key Characteristics of the VC Bound
+![Alt text](assets/image-15.png)
+- note: each little squiggle above represents the case where $\lvert E_{\text{in}}(g) - E_{\text{out}}(g) \rvert > \epsilon$ -> i.e. the "Bad Event"
+- instead of summing up all the errors and thinking of each one as separate (in the case of multi-bin Hoeffding Inequality), we can finally appreciate their overlap and deal with it as such. 
