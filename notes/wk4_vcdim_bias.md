@@ -2,7 +2,7 @@
 id: kvjfbs41vzagwypya2b75h8
 title: Wk4_vcdim_bias
 desc: ''
-updated: 1697658716640
+updated: 1697914134138
 created: 1697648955255
 ---
 
@@ -60,3 +60,48 @@ Moreover, this statement can be made independent of:
 ![Alt text](assets/image-23.png)
 
 ![Alt text](assets/image-24.png)
+
+# Bias-Variance Tradeoff (L8) 
+## Approximation v Generalization 
+- Small $E_{out}$ -> better approximation of $f$ out of sample
+- more complex $H$ -> better chance of _approximating_ $f$
+- less complex $H$ -> better chance of _generalizing_ out of sample
+
+## How do we quantify this tradeoff?
+- VC analysis was one approach 
+- Bias-Variance analysis is another, and it involves decomposing $E_{out}$ into:
+    1. How well $H$ can approximate $f$
+    2. How well can we select a good $h \in H$
+- for our purposes, we will apply this to **real-valued targets** and use **squared-error**
+
+## What is bias and variance? 
+- First, define: 
+$$
+\begin{aligned}
+E_{out}(g(x)^{D}) &= \mathbb{E}_x[(g(x)^{D} - f(x))^2] \\ 
+\mathbb{E}_{D}[E_{out}(g^{D})]  &=\mathbb{E}_{D}[\mathbb{E}_x[(g(x)^{D} - f(x))^2]] \\ 
+&= \text{ (order of integrals doesn't matter: Tonelli's THm)}\\ 
+\end{aligned}
+$$
+- Let $\bar{g}(x) = \mathbb{E}_{D}[g(x)^{D}]$ 
+    - ^ this is literally just the avg hypothesis we can get, so we can use this as a benchmark! (think about how variance is defined normally)
+    - if we have many datasets - we get $\bar{g}(x) \approx \frac{1}{K}\sum_{k=1}^{K}[g(x)^{D}]$  
+    
+![Alt text](assets/image-25.png)
+- simple derivation above 
+![Alt text](assets/image-26.png)
+- now we have bias (how far away is the "best" hypothesis from the target) and variance (how far is the given hypothesis from the "best" hypothesis)! 
+
+## So, what is the bias-variance tradeoff?
+- As hypothesis set $H$ gets bigger -> bias falls and variance rises. (shown below)
+![Alt text](assets/image-27.png)
+
+## Example
+![Alt text](assets/image-28.png)
+- a line y = b is better at "learning" (i.e. has a lower $E_{out}$) a sine function than a line y = mx + b simply coz the linear function varies way way too much. (recall $E_{out}$ = bias + variance)
+
+## Takeaway
+- match the _model complexity_ to the _data resources_ (the data set), not to the _target complexity_ 
+
+## Comparing Analysis w/ Learning Curves
+![Alt text](assets/image-29.png) 
