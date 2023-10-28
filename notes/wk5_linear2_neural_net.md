@@ -2,18 +2,18 @@
 id: 5chp3hefvxek92fdjlngqlu
 title: Wk5_linear2_neural_net
 desc: ''
-updated: 1698443068530
+updated: 1698456751076
 created: 1698428867086
 ---
-lear
-# Linear Model 2    
+# Linear Model 2 (L9)
 What we have done:
 - linear classification (perceptron algorithm)
 - linear regression 
 - non-linear transformations (except analysis on generalization)
 
 # Nonlinear transforms
-Recall that if we are able to transform a nonlinear input space with some function $\phi$ to a linear space, then finding a hypothesis $g$ in the input space is just: $g(x) = \text{sign}( \tilde{w}^T \cdot \phi(\bold{x}))$ (tilde weight is just weights in the transformed space than the input space!)
+Recall that if we are able to transform a nonlinear input space with some function $\phi$ to a linear space, then finding a hypothesis $g$ in the input space is just: $g(x) = \text{sign}( \tilde{w}^T \cdot \phi(\bold{x}))$ 
+(tilde weight is just weights in the transformed space than the input space!)
 
 ## The price of nonlinear transforms
 - from the VC dim analysis, we know that for a $d$ dimensional point in the input space, we get a $d_{vc}$ = $d+1$.
@@ -81,3 +81,48 @@ Now define our hypothesis to be $h(x) = \theta{(s)}$, where we interpret this as
 - by always ensuring that $\eta$ is a multiple of the magnitude of the change in gradient, we essentially can now have it be "fixed" 
 
 ![Alt text](assets/image-42.png)
+
+
+# Neural Networks (L10)
+## Stochastic gradient descent 
+- from before, using the normal gradient descent, the plan was to calculate $E_{in}$ by summing up across multiple examples and taking the average,
+this is called "batch" GD
+- instead of summing up across, what if we just tried to minimize $E_{in}$ using only a single ($x_n, y_n$) -> this is stochastic gradient descent (SGD)
+![Alt text](assets/image-43.png)
+- i.e. we are able to do this since the expected value of the gradient is the exact same as before 
+
+![Alt text](assets/image-44.png)
+- randomization helps because sometimes it helps the algorithm navigate out of relatively worse local minimas like the very left one in the diagram above
+
+## Creating layers
+![Alt text](assets/image-45.png)
+-  understand that we can create the "and" and "or" function quite easily with perceptrons above, which should work as a proof of concept for how powerful they can be when combined 
+![Alt text](assets/image-46.png)
+
+![Alt text](assets/image-46.png)
+- although perceptrons when combined, can be powerful - they still present the two issues as above. However, at least we have VC Dim to analyze generalization, but what about optimization ? -> that's where neural nets come in which are much more efficient due to backprop 
+
+![Alt text](assets/image-47.png)
+- the above just defines some bounds
+
+![Alt text](assets/image-48.png)
+- notation!
+- notice how each node in the network was just a logistic function, but instead of what we used for logistic regression - we use the hyperbolic tan in order to vary the output from -1 to 1 instead of just 0 to 1 (we don't only want to add to the weights, we might also want to sub from them!)
+- notice also how there is only a single output for this network 
+
+## Backpropagation 
+![Alt text](assets/image-49.png)
+
+![Alt text](assets/image-50.png)
+- for the bottom left result, every $x_i^{l-1}$ is simply a constant in the PDE
+- what do we do for the $\delta$? -> we calculate it from the final layer back! (how do we find the final layer's $\delta$? -> look below)
+
+![Alt text](assets/image-51.png)
+- notice: the error function for the weights vector here is MSE, but could be swapped for wtv else
+- notice: the logistic function here is $tanh$, but again can be swapped for something else
+- up until this point, we did not need to consider either one of the two above!
+
+![Alt text](assets/image-52.png)
+- the big thing above is the summation that we need to be careful of! Due to the feedforward design, a node in some layer $l$ affects every node in the layer $l+1$ 
+
+![Alt text](assets/image-53.png)
