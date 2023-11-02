@@ -2,10 +2,10 @@
 id: 5chp3hefvxek92fdjlngqlu
 title: Wk5_linear2_neural_net
 desc: ''
-updated: 1698456751076
+updated: 1698459427362
 created: 1698428867086
 ---
-# Linear Model 2 (L9)
+# Lleinear Model 2 (L9)
 What we have done:
 - linear classification (perceptron algorithm)
 - linear regression 
