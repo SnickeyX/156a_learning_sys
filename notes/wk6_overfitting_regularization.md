@@ -2,7 +2,7 @@
 id: izu11gztxo76fqk4yx8emue
 title: Wk6_overfitting_regularization
 desc: ''
-updated: 1698951333046
+updated: 1699041934041
 created: 1698949678919
 ---
 
@@ -48,4 +48,34 @@ trying to fit curves of a higher dimension can lead to overfitting and a worse $
 ## How to prevent overfitting?
 1. Regularization 
 2. Validation 
+
+# Regularization (L12)
+Approaches: 
+1. Mathematical - through approximations based on some assumptions (if assumptions don't hold, these are not useful)
+2. Heuristic - changing how we minimize $E_{in}$
+
+![Alt text](assets/image-64.png)
+- variance goes down heavy since we limit how much the hypotheses vary in $y$ and limit their gradients. Bias suffers a little as a result but nothing in comparison to the reduction in variance!
+
+![Alt text](assets/image-65.png)
+- Using Legendre polynomials specifically since their coefficients are s.t. each polynomial is orthogonal to each other (i.e. the weights assigned to each will now actually have an impact)
+![Alt text](assets/image-66.png)
+- $Z$ is now defined s.t. each of its rows is one $z_i^{T}$. In order to simulate square, we have to transpose one and multiple with the other. 
+- $w_{lin}$ is simply what we had before with linear regression where we use a pseudo-inverse in order to get the weights 
+
+![Alt text](assets/image-67.png)
+- we now assign a cost $C$ (i.e. just an upper bound), to the sum of the square of all weight terms across the $q^{th}$-order polynomial (i.e. simply $w^Tw \leq C$ )
+
+![Alt text](assets/image-68.png)
+- idek -> trust the process ig
+
+![Alt text](assets/image-69.png)
+- we are simply adding the extra term on the right for the aug error in order to account for the regularization (it literally represents regularization)
+
+![Alt text](assets/image-70.png)
+- the $\lambda$ term here changes the "magnitude" of the regularization (informally) -> which is why the formula w/o regularization is just the one with regularization where $\lambda$ is set to 0. 
+
+
+![Alt text](assets/image-71.png)
+- NOTE: we do not necessarily want make $\lambda$ huge -> that has the opposite effect of underfitting 
 
